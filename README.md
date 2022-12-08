@@ -13,6 +13,6 @@ Without docker:
 ```
 git clone https://github.com/s1d3r/stock-graph
 cd stock-graph
-pip install -r requirements.txt
-python app.py
+pip3 install -r requirements.txt
+python3 app.py
 ```
