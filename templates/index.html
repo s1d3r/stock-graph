@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free financial stock information and insights">
+    <meta name="keywords" content="finance, stock, graph, free">
+    <meta name="author" content="Stock Graph Inc.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/2.0.6/velocity.min.js" integrity="sha512-+VS2+Nl1Qit71a/lbncmVsWOZ0BmPDkopw5sXAS2W+OfeceCEd9OGTQWjgVgP5QaMV4ddqOIW9XLW7UVFzkMAw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8KXXCXC6S1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-8KXXCXC6S1');
+    </script>
+
+    <title>Stock Graph</title>
+</head>
+<body>
+    <div id="soon">
+        Sorry, but your device is not yet supported.
+    </div>
+    <div id="logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Логотип компании Stock Graph Inc.">
+        Stock Graph
+    </div>
+    <div id="description">
+        Financial insights, stocks and options charts
+    </div>
+    <div id="search">
+        <form method="GET">
+            <input type="text" oninput="this.value = this.value.toUpperCase()" maxlength="47" style="text-align:center" name="stock" value="{{ request.args.get('stock', '') }}">
+        </form>
+    </div>
+    <div id="search_suggestions">
+        <a href="{{ url_for('index', stock='AAPL') }}"><i class="fa-solid fa-chart-simple"></i>AAPL</a>
+        <a href="{{ url_for('index', stock='AMZN') }}"><i class="fa-solid fa-chart-simple"></i>AMZN</a>
+        <a href="{{ url_for('index', stock='GOOGL') }}"><i class="fa-solid fa-chart-simple"></i>GOOGL</a>
+        <a href="{{ url_for('index', stock='NFLX') }}"><i class="fa-solid fa-chart-simple"></i>NFLX</a>
+        <a href="{{ url_for('index', stock='MSFT') }}"><i class="fa-solid fa-chart-simple"></i>MSFT</a>
+        <a href="{{ url_for('index', stock='META') }}"><i class="fa-solid fa-chart-simple"></i>META</a>
+        <a href="{{ url_for('index', stock='TSLA') }}"><i class="fa-solid fa-chart-simple"></i>TSLA</a>
+    </div>
+</body>
+</html>

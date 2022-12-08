@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free financial stock information and insights">
+    <meta name="keywords" content="finance, stock, graph, free">
+    <meta name="author" content="Stock Graph Inc.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stock.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <!-- JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+    <title>Stock Graph | {{ stock }}</title>
+</head>
+<body>
+    <div id="loader"></div>
+    <header>
+        <a href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Логотип компании Stock Graph Inc.">
+            <span>Stock Graph</span>
+        </a>
+        <form method="GET" autocomplete="off">
+            <input type="search" oninput="this.value = this.value.toUpperCase()" id="search_input" name="stock" value="{{ request.args.get('stock', '') }}">
+            <button id="submit" type="submit">
+                <i class="fa-solid fa-magnifying-glass fa-1x"></i>
+            </button>
+        </form>
+        <img onclick="change_lang();" id="language" src="https://img.freepik.com/free-vector/illustration-usa-flag_53876-18165.jpg" style="width: auto; height: 25px;"/>
+    </header>
+    <main>
+        <div id="chart"></div>
+        <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+        <script type='text/javascript'>
+          var graphs = {{graph | safe}};
+          Plotly.plot('chart', graphs, {});
+        </script>
+        <div id="numbers">
+            <div id="stat1">
+                <div id="stat1_name">Previous Close</div>
+                <div id="stat1_parsed">{{ prev_close }}</div>
+            </div>
+            <div id="stat2">
+                <div id="stat2_name">Day Range</div>
+                <div id="stat2_parsed">{{ day_range }}</div>
+            </div>
+            <div id="stat3">
+                <div id="stat3_name">Year Range</div>
+                <div id="stat3_parsed">{{ year_range }}</div>
+            </div>
+            <div id="stat4">
+                <div id="stat4_name">Dividend Yield</div>
+                <div id="stat4_parsed">{{ dividend }}</div>
+            </div>
+            <div id="stat5">
+                <div id="stat5_name">P/E</div>
+                <div id="stat5_parsed">{{ pe }}</div>
+            </div>
+            <div id="stat6">
+                <div id="stat6_name">Website</div>
+                <div id="stat6_parsed"><a href="https://{{ website }}/" target="blank" style=="text-decoration: none; color: black;">{{ website }}</a></div>
+            </div>
+            <div id="stat7">
+                <div id="stat7_name">Employees</div>
+                <div id="stat7_parsed">{{ employees }}</div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <a onclick="alertify.error('Раздел скоро появится!');">Поддержка</a>
+        <a href="{{ url_for('privacy') }}">Конфиденциальность</a>
+        <a href="https://raw.githubusercontent.com/s1d3r/stock-graph/main/LICENSE">Лицензия</a>
+        <a href="#" onclick="alertify.alert('Информация', 'Финансовая информация взята с сервиса <br>Yahoo Finance<br><br>Stock Graph &copy; 2023');">Информация</a>
+    </footer>
+	<script src="{{ url_for('static', filename='js/core.js') }}"></script>
+</body>
+</html>
