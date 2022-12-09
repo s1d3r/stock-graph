@@ -1,5 +1,5 @@
 # Stock Graph v0.1
-> Financial charts for everyone
+> stock-graph.ru
 ## Installation
 With docker:
 ```
