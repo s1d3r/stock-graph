@@ -3,11 +3,11 @@
 ## Installation
 With docker:
 ```
+
 git clone https://github.com/s1d3r/stock-graph
 cd stock-graph
-docker build --tag stockgraph .
-docker run -d --publish 5000:80 stockgraph
-firefox localhost:5000
+chmod +x setup.sh
+./setup.sh
 ```
 Without docker:
 ```
