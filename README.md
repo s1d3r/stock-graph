@@ -3,7 +3,6 @@
 ## Installation
 With docker:
 ```
-
 git clone https://github.com/s1d3r/stock-graph
 cd stock-graph
 chmod +x setup.sh
